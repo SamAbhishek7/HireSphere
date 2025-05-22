@@ -8,148 +8,173 @@
 </div>
 
 ## 📋 Table of Contents
-- [Overview](#-overview)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
-- [Environment Variables](#-environment-variables)
-- [Running the Application](#-running-the-application)
-- [API Documentation](#-api-documentation)
+
+* [Overview](#-overview)
+* [Features](#-features)
+* [Tech Stack](#-tech-stack)
+* [Prerequisites](#-prerequisites)
+* [Installation](#-installation)
+* [Environment Variables](#-environment-variables)
+* [Running the Application](#-running-the-application)
+* [API Documentation](#-api-documentation)
+* [Contributing](#-contributing)
 
 ## 🌟 Overview
-HireSphere is a full-stack job portal application built with the MERN stack. It provides a seamless platform for job seekers to find opportunities and for employers to post job listings. The application features a modern UI, real-time updates, and a robust backend system.
+
+**HireSphere** is a modern, full-stack job portal built with the **MERN stack**. It offers a seamless experience for **job seekers** to find relevant opportunities and for **employers** to manage job postings, view applications, and track hiring performance. With a responsive UI, secure authentication, and efficient backend systems, HireSphere is designed to simplify recruitment for everyone.
 
 ## ✨ Features
 
-### 👤 User Features
-- **Authentication System**
-  - Secure JWT-based authentication
-  - Role-based access (Job Seeker/Employer)
-  - Profile management with resume upload
+### 👤 Job Seeker Features
 
-- **Job Search**
-  - Advanced search and filtering
-  - Category-based job browsing
-  - Save favorite jobs
-  - Easy application process
+* 🔐 **Secure Authentication**
 
-- **Profile Management**
-  - Upload/update profile picture
-  - Resume management
-  - Track application status
-  - Skills and bio section
+  * JWT-based login and registration
+  * Role-based access control (Seeker / Employer)
+
+* 🔎 **Job Discovery**
+
+  * Advanced job search and filtering
+  * Category-wise job listings
+  * Save jobs to favorites
+  * One-click application
+
+* 📝 **Profile & Resume Management**
+
+  * Update personal info, bio, and skills
+  * Upload profile picture and resume
+  * Track applied jobs
 
 ### 💼 Employer Features
-- **Job Management**
-  - Create and post job listings
-  - Edit job details
-  - View applicant profiles
-  - Track application statistics
 
-- **Company Profile**
-  - Manage company information
-  - View application analytics
-  - Candidate shortlisting
+* 📄 **Job Posting & Editing**
+
+  * Create, edit, or delete job posts
+  * Add detailed job descriptions, skills, and salary range
+
+* 📊 **Application Insights**
+
+  * View applicant details
+  * Track number of applications per job
+  * Shortlist and review candidate resumes
+
+* 🏢 **Company Branding**
+
+  * Update company profile
+  * Add logo, description, and contact details
 
 ## 🛠 Tech Stack
 
-### Frontend
-- React.js 18.2.0
-- Redux Toolkit (State Management)
-- Tailwind CSS (Styling)
-- Shadcn UI (Component Library)
-- Axios (API Calls)
+### 🔹 Frontend
 
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- JWT (Authentication)
-- Cloudinary (File Storage)
-- Multer (File Upload)
+* React.js 18.2.0
+* Redux Toolkit
+* Tailwind CSS
+* Shadcn UI
+* Axios
+
+### 🔸 Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* JWT for Authentication
+* Multer & Cloudinary for file uploads
 
 ## 📝 Prerequisites
-Before running the application, ensure you have:
-- Node.js (v16 or higher)
-- MongoDB (local or Atlas URI)
-- Cloudinary Account
-- Git
+
+Ensure the following are installed on your machine:
+
+* Node.js (v16+)
+* MongoDB (local or MongoDB Atlas)
+* Git
+* A [Cloudinary](https://cloudinary.com/) account
 
 ## 💻 Installation
 
 1. **Clone the Repository**
-   \`\`\`bash
+
+   ```bash
    git clone https://github.com/yourusername/HireSphere.git
    cd HireSphere
-   \`\`\`
+   ```
 
 2. **Install Backend Dependencies**
-   \`\`\`bash
+
+   ```bash
    cd backend
    npm install
-   \`\`\`
+   ```
 
 3. **Install Frontend Dependencies**
-   \`\`\`bash
+
+   ```bash
    cd ../frontend
    npm install
-   \`\`\`
+   ```
 
 ## 🔐 Environment Variables
 
-### Backend (.env)
-\`\`\`env
+### 📁 Backend (`backend/.env`)
+
+```env
 PORT=8000
 MONGO_URI=your_mongodb_uri
 SECRET_KEY=your_jwt_secret_key
 CLOUD_NAME=your_cloudinary_cloud_name
 API_KEY=your_cloudinary_api_key
 API_SECRET=your_cloudinary_api_secret
-\`\`\`
+```
 
-### Frontend (.env)
-\`\`\`env
+### 📁 Frontend (`frontend/.env`)
+
+```env
 VITE_BACKEND_URL=http://localhost:8000
-\`\`\`
+```
 
 ## 🚀 Running the Application
 
-1. **Start the Backend Server**
-   \`\`\`bash
+1. **Start Backend Server**
+
+   ```bash
    cd backend
    npm run dev
-   \`\`\`
+   ```
 
-2. **Start the Frontend Development Server**
-   \`\`\`bash
-   cd frontend
+2. **Start Frontend Server**
+
+   ```bash
+   cd ../frontend
    npm run dev
-   \`\`\`
+   ```
 
-3. **Access the Application**
-   - Frontend: http://localhost:5173
-   - Backend API: http://localhost:8000
+3. **Open in Browser**
+
+   * Frontend: `http://localhost:5173`
+   * Backend: `http://localhost:8000`
 
 ## 📚 API Documentation
 
-### Authentication Endpoints
-- POST `/api/v1/auth/register` - Register new user
-- POST `/api/v1/auth/login` - User login
-- POST `/api/v1/auth/logout` - User logout
+### 🔐 Authentication
 
-### User Endpoints
-- GET `/api/v1/user/profile` - Get user profile
-- PUT `/api/v1/user/profile/update` - Update user profile
-- POST `/api/v1/user/resume/upload` - Upload resume
+* `POST /api/v1/auth/register` – Register a new user
+* `POST /api/v1/auth/login` – Log in user
+* `POST /api/v1/auth/logout` – Log out user
 
-### Job Endpoints
-- GET `/api/v1/jobs` - Get all jobs
-- POST `/api/v1/jobs/create` - Create new job (Employer only)
-- PUT `/api/v1/jobs/:id` - Update job (Employer only)
-- DELETE `/api/v1/jobs/:id` - Delete job (Employer only)
-- POST `/api/v1/jobs/:id/apply` - Apply for job
+### 👤 User
+
+* `GET /api/v1/user/profile` – Get user profile
+* `PUT /api/v1/user/profile/update` – Update profile
+* `POST /api/v1/user/resume/upload` – Upload resume
+
+### 💼 Jobs
+
+* `GET /api/v1/jobs` – Get all jobs
+* `POST /api/v1/jobs/create` – Create a new job (Employer only)
+* `PUT /api/v1/jobs/:id` – Update a job post (Employer only)
+* `DELETE /api/v1/jobs/:id` – Delete a job post (Employer only)
+* `POST /api/v1/jobs/:id/apply` – Apply for a job
 
 ## 🤝 Contributing
-Feel free to fork this repository, create a feature branch, and submit a Pull Request.
 
+We welcome contributions! Feel free to fork this repo, create a new branch, and submit a pull request with your improvements or features.

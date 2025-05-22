@@ -47,7 +47,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         formData.append("bio", input.bio);
         formData.append("skills", input.skills);
         if (input.file) {
-            formData.append("file", input.file);
+            formData.append("resume", input.file);
         }
         if (input.profilePhoto) {
             formData.append("profilePhoto", input.profilePhoto);
@@ -155,7 +155,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                     name="file"
                                     type="file"
                                     accept="application/pdf"
-                                    onChange={fileChangeHandler}
+                                    onChange={(e) => fileChangeHandler(e, 'resume')}
                                     className="col-span-3"
                                 />
                             </div>

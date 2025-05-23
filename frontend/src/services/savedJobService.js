@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api/v1/saved-jobs';
+const API_URL = 'https://hiresphere-3q8l.onrender.com/api/v1/saved-jobs';
 
 // Get all saved jobs
 export const getSavedJobs = async () => {

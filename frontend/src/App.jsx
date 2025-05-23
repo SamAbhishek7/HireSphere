@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { initSavedJobs } from './redux/jobSlice'
+import { setSavedJobs } from './redux/jobSlice'
+import { getSavedJobs } from './services/savedJobService'
 import Navbar from './components/shared/Navbar'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
@@ -84,7 +85,17 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initSavedJobs());
+    const fetchSavedJobs = async () => {
+      try {
+        const response = await getSavedJobs();
+        if (response.success) {
+          dispatch(setSavedJobs(response.savedJobs));
+        }
+      } catch (error) {
+        console.error('Error fetching saved jobs:', error);
+      }
+    };
+    fetchSavedJobs();
   }, [dispatch]);
 
   return (

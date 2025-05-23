@@ -66,7 +66,7 @@ const JobDescription = () => {
                     <div className='flex items-center gap-2 mt-4'>
                         <Badge className={'text-blue-700 font-bold'} variant="ghost">{singleJob?.postion} Positions</Badge>
                         <Badge className={'text-[#F83002] font-bold'} variant="ghost">{singleJob?.jobType}</Badge>
-                        <Badge className={'text-[#7209b7] font-bold'} variant="ghost">{singleJob?.salary}LPA</Badge>
+                        <Badge className={'text-[#2563EB] font-bold'} variant="ghost">{singleJob?.salary}LPA</Badge>
                         {singleJob?.lastDate && (
                             <Badge className={`font-bold ${getDaysLeft(singleJob.lastDate) <= 3 ? 'text-red-500' : 'text-green-600'}`} variant="ghost">
                                 {getDaysLeft(singleJob.lastDate)} days left
@@ -77,7 +77,7 @@ const JobDescription = () => {
                 <Button
                     onClick={isApplied || getDaysLeft(singleJob?.lastDate) < 0 ? null : applyJobHandler}
                     disabled={isApplied || getDaysLeft(singleJob?.lastDate) < 0}
-                    className={`rounded-lg ${isApplied || getDaysLeft(singleJob?.lastDate) < 0 ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#7209b7] hover:bg-[#5f32ad]'}`}>
+                    className={`rounded-lg ${isApplied || getDaysLeft(singleJob?.lastDate) < 0 ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#2563EB] hover:bg-[#1d4ed8]'}`}>
                     {isApplied ? 'Already Applied' : getDaysLeft(singleJob?.lastDate) < 0 ? 'Job Expired' : 'Apply Now'}
                 </Button>
             </div>

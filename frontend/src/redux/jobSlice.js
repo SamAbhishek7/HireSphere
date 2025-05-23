@@ -16,11 +16,8 @@ const jobSlice = createSlice({
         setAllJobs:(state,action) => {
             state.allJobs = action.payload;
         },
-        initSavedJobs: (state) => {
-            const savedJobs = localStorage.getItem('savedJobs');
-            if (savedJobs) {
-                state.savedJobs = JSON.parse(savedJobs);
-            }
+        setSavedJobs: (state, action) => {
+            state.savedJobs = action.payload;
         },
         toggleSaveJob: (state, action) => {
             if (!action.payload || !action.payload._id) return;
@@ -37,7 +34,6 @@ const jobSlice = createSlice({
             } else {
                 state.savedJobs.splice(jobIndex, 1);
             }
-            localStorage.setItem('savedJobs', JSON.stringify(state.savedJobs));
         },
         setSingleJob:(state,action) => {
             state.singleJob = action.payload;
@@ -64,6 +60,6 @@ export const {
     setAllAppliedJobs,
     setSearchedQuery,
     toggleSaveJob,
-    initSavedJobs
+    setSavedJobs
 } = jobSlice.actions;
 export default jobSlice.reducer;

@@ -6,6 +6,7 @@ import { Badge } from './ui/badge'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleSaveJob } from '@/redux/jobSlice'
+import { saveJob, unsaveJob } from '@/services/savedJobService';
 
 const Job = ({job}) => {
     const navigate = useNavigate();
@@ -13,9 +14,18 @@ const Job = ({job}) => {
     const { savedJobs = [] } = useSelector(store => store.job);
     const isSaved = savedJobs?.some(savedJob => savedJob?._id === job?._id) || false;
 
-    const handleSaveToggle = () => {
+    const handleSaveToggle = async () => {
         if (!job || !job._id) return;
-        dispatch(toggleSaveJob(job));
+        try {
+            if (isSaved) {
+                await unsaveJob(job._id);
+            } else {
+                await saveJob(job._id);
+            }
+            dispatch(toggleSaveJob(job));
+        } catch (error) {
+            console.error('Error toggling save status:', error);
+        }
     };
 
 
@@ -32,10 +42,10 @@ const Job = ({job}) => {
             <div className='flex items-center justify-end'>
                 <Button 
                     variant="outline" 
-                    className={`rounded-full ${isSaved ? 'bg-purple-50' : ''}`} 
+                    className={`rounded-full ${isSaved ? 'bg-blue-50' : ''}`} 
                     size="icon"
                     onClick={handleSaveToggle}>
-                    <Bookmark className={isSaved ? 'fill-[#6A38C2] text-[#6A38C2]' : ''} />
+                    <Bookmark className={isSaved ? 'fill-[#2563EB] text-[#2563EB]' : ''} />
                 </Button>
             </div>
 
@@ -58,7 +68,7 @@ const Job = ({job}) => {
             <div className='flex flex-wrap items-center gap-2 mt-4'>
                 <Badge className={'text-blue-700 font-bold'} variant="ghost">{job?.position} Positions</Badge>
                 <Badge className={'text-[#F83002] font-bold'} variant="ghost">{job?.jobType}</Badge>
-                <Badge className={'text-[#7209b7] font-bold'} variant="ghost">{job?.salary}LPA</Badge>
+                <Badge className={'text-[#2563EB] font-bold'} variant="ghost">{job?.salary}LPA</Badge>
                 {job?.lastDate && (
                     <Badge className={`font-bold ${getDaysLeft(job.lastDate) <= 3 ? 'text-red-500' : 'text-green-600'}`} variant="ghost">
                         {getDaysLeft(job.lastDate)} days left
@@ -71,7 +81,7 @@ const Job = ({job}) => {
                 <div className='flex items-center gap-4'>
                     <Button onClick={()=> navigate(`/description/${job?._id}`)} variant="outline">Details</Button>
                     <Button 
-                        className={`${isSaved ? 'bg-[#6A38C2]' : 'bg-[#6A38C2]'}`}
+                        className={`${isSaved ? 'bg-[#2563EB]' : 'bg-[#2563EB]'}`}
                         onClick={handleSaveToggle}>
                         {isSaved ? 'Saved' : 'Save For Later'}
                     </Button>

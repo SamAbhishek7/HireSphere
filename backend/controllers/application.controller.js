@@ -115,6 +115,14 @@ export const updateStatus = async (req,res) => {
             })
         };
 
+        // Check if application is already accepted or rejected
+        if (application.status === 'accepted' || application.status === 'rejected') {
+            return res.status(400).json({
+                message: "Cannot update status. Application has already been processed.",
+                success: false
+            });
+        }
+
         // update the status
         application.status = status.toLowerCase();
         await application.save();

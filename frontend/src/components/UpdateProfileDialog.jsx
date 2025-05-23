@@ -91,6 +91,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                     id="name"
                                     name="fullname"
                                     type="text"
+                                    placeholder="Enter your full name"
                                     value={input.fullname}
                                     onChange={changeEventHandler}
                                     className="col-span-3"
@@ -102,6 +103,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                     id="email"
                                     name="email"
                                     type="email"
+                                    placeholder="Enter your email address"
                                     value={input.email}
                                     onChange={changeEventHandler}
                                     className="col-span-3"
@@ -123,6 +125,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                 <Input
                                     id="number"
                                     name="phoneNumber"
+                                    placeholder="Enter your phone number"
                                     value={input.phoneNumber}
                                     onChange={changeEventHandler}
                                     className="col-span-3"
@@ -133,6 +136,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                 <Input
                                     id="bio"
                                     name="bio"
+                                    placeholder="Write a brief description about yourself"
                                     value={input.bio}
                                     onChange={changeEventHandler}
                                     className="col-span-3"
@@ -143,6 +147,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                                 <Input
                                     id="skills"
                                     name="skills"
+                                    placeholder="Enter skills separated by commas (e.g., React, Node.js, MongoDB)"
                                     value={input.skills}
                                     onChange={changeEventHandler}
                                     className="col-span-3"

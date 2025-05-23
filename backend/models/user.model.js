@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
 verificationToken: {
   type: String,
 },
+savedJobs: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'Job'
+}],
     profile:{
         bio:{type:String},
         skills:[{type:String}],

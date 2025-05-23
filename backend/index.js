@@ -8,10 +8,11 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import savedJobRoute from "./routes/savedJob.routes.js";
-
+import path from "path"
 dotenv.config({});
 
 const app = express();
+const __dirname = path.resolve();
 
 // middleware
 app.use(express.json());
@@ -35,7 +36,10 @@ app.use("/api/v1/application", applicationRoute);
 app.use("/api/v1/saved-jobs", savedJobRoute);
 
 
-
+app.use(express.static(path.join(__dirname,"/frontend/dist")))
+app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname,"frontend","dist","index.html"))
+})
 app.listen(PORT,()=>{
     connectDB();
     console.log(`Server running at port ${PORT}`);
